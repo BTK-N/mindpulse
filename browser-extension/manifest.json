@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "MindPulse Screen Time Companion",
+  "version": "0.1.0",
+  "description": "Tracks the active tab's domain locally so you can see your actual screen time.",
+  "permissions": ["tabs", "idle", "alarms", "storage", "notifications"],
+  "host_permissions": [
+    "http://127.0.0.1:8000/*",
+    "http://localhost:8000/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}

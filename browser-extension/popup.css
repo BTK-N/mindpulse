@@ -1,0 +1,500 @@
+/* MindPulse Screen Time Companion - Popup Styles */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 320px;
+  min-width: 320px;
+  max-width: 320px;
+  background-color: #FBFBF9;
+  color: #1C1B18;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+.popup-container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  max-height: 640px;
+  overflow-y: auto;
+}
+
+.popup-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.popup-container::-webkit-scrollbar-thumb {
+  background: #E6E4DD;
+  border-radius: 4px;
+}
+
+/* Structural Dividers & Section Headers */
+.section-divider {
+  border: 0;
+  border-top: 1px solid #E6E4DD;
+  margin: 16px 0;
+}
+
+.section-mono-header {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #706E65;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Header Row */
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.extension-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1F4E42;
+  letter-spacing: -0.01em;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 20px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #DCD9D0;
+  transition: background-color 0.15s ease;
+  border-radius: 20px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #FFFFFF;
+  transition: transform 0.15s ease;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.toggle-switch input:checked + .slider {
+  background-color: #1F4E42;
+}
+
+.toggle-switch input:checked + .slider:before {
+  transform: translateX(14px);
+}
+
+.toggle-switch input:focus-visible + .slider {
+  outline: 2px solid #1F4E42;
+  outline-offset: 2px;
+}
+
+/* Summary Section */
+.summary-section {
+  margin-bottom: 12px;
+}
+
+.total-time {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1C1B18;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.site-count {
+  font-size: 12px;
+  color: #706E65;
+}
+
+/* Domains Section */
+.domains-section {
+  border-top: 1px solid #E6E4DD;
+  padding-top: 12px;
+}
+
+.domain-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.domain-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.domain-name {
+  color: #1C1B18;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 190px;
+}
+
+.domain-duration {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  color: #1C1B18;
+  text-align: right;
+  flex-shrink: 0;
+  padding-left: 8px;
+}
+
+.empty-state {
+  font-size: 12px;
+  color: #706E65;
+  line-height: 1.45;
+  padding: 6px 0;
+}
+
+/* Sync Section */
+.sync-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.sync-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-pair-outline {
+  width: 100%;
+  padding: 8px 12px;
+  background-color: transparent;
+  color: #1F4E42;
+  border: 1px solid #1F4E42;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-pair-outline:hover {
+  background-color: #1F4E42;
+  color: #FFFFFF;
+}
+
+.pair-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pair-input-group {
+  display: flex;
+  gap: 6px;
+}
+
+.token-input {
+  flex: 1;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: #1C1B18;
+  background-color: #FFFFFF;
+  border: 1px solid #E6E4DD;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.token-input:focus {
+  border-color: #1F4E42;
+}
+
+.btn-connect {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  background-color: #1F4E42;
+  color: #FFFFFF;
+  border: 1px solid #1F4E42;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-connect:hover {
+  opacity: 0.9;
+}
+
+.btn-connect:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.pair-feedback {
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.pair-feedback.info {
+  color: #1F4E42;
+}
+
+.pair-feedback.error {
+  color: #B42318;
+}
+
+.pair-feedback.success {
+  color: #027A48;
+}
+
+.get-token-link {
+  font-size: 11px;
+  color: #706E65;
+  text-decoration: none;
+  line-height: 1.3;
+}
+
+.get-token-link:hover {
+  text-decoration: underline;
+  color: #1F4E42;
+}
+
+/* Paired State */
+.sync-status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sync-status-badge {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.sync-status-badge.ok {
+  color: #027A48;
+}
+
+.sync-status-badge.error {
+  color: #B42318;
+}
+
+.sync-status-badge.unauthorized {
+  color: #B54708;
+}
+
+.sync-now-link {
+  font-size: 11px;
+  font-weight: 600;
+  color: #1F4E42;
+  text-decoration: none;
+}
+
+.sync-now-link:hover {
+  text-decoration: underline;
+}
+
+.sync-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #706E65;
+}
+
+.disconnect-link {
+  color: #706E65;
+  text-decoration: none;
+}
+
+.disconnect-link:hover {
+  text-decoration: underline;
+  color: #B42318;
+}
+
+.sync-repair-box {
+  background-color: #FEF3F2;
+  border: 1px solid #FECDCA;
+  border-radius: 4px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.repair-msg {
+  font-size: 11px;
+  font-weight: 600;
+  color: #B42318;
+}
+
+/* Notifications Section */
+.notifications-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notif-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.notif-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.notif-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1C1B18;
+  display: block;
+}
+
+.notif-sublabel {
+  font-size: 11px;
+  color: #706E65;
+  line-height: 1.3;
+  margin-top: 1px;
+}
+
+.notif-subrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 8px;
+  background-color: #F4F2EC;
+  border-radius: 4px;
+  margin-top: -2px;
+}
+
+.subrow-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #706E65;
+}
+
+.notif-select {
+  padding: 3px 6px;
+  font-size: 11px;
+  color: #1C1B18;
+  background-color: #FFFFFF;
+  border: 1px solid #E6E4DD;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+.notif-select:focus {
+  border-color: #1F4E42;
+}
+
+.time-inputs-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.notif-time-input {
+  padding: 2px 4px;
+  font-size: 11px;
+  color: #1C1B18;
+  background-color: #FFFFFF;
+  border: 1px solid #E6E4DD;
+  border-radius: 4px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.notif-time-input:focus {
+  border-color: #1F4E42;
+  outline: none;
+}
+
+.time-separator {
+  font-size: 11px;
+  color: #706E65;
+}
+
+.notif-test-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2px;
+}
+
+.test-notification-link {
+  font-size: 11px;
+  font-weight: 500;
+  color: #1F4E42;
+  text-decoration: none;
+}
+
+.test-notification-link:hover {
+  text-decoration: underline;
+}
+
+.test-feedback {
+  font-size: 11px;
+  color: #027A48;
+  font-weight: 500;
+}
+
+/* App Link Row */
+.app-link-row {
+  border-top: 1px solid #E6E4DD;
+  padding-top: 12px;
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.open-link {
+  font-size: 12px;
+  font-weight: 500;
+  color: #1F4E42;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.open-link:hover {
+  text-decoration: underline;
+  opacity: 0.85;
+}

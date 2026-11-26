@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#FBFBF9" />
+    <link rel="icon" type="image/png" href="/icon-128.png" />
+    <title>MindPulse — Digital Well-Being & Mental Health</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[#FBFBF9] text-[#1C1B18] antialiased selection:bg-[#1F4E42]/15 selection:text-[#1F4E42]">
+    <div id="root">
+      <div style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #FBFBF9; color: #1C1B18; font-family: Inter, -apple-system, sans-serif;">
+        <div style="font-family: Newsreader, Georgia, serif; font-size: 36px; font-style: italic; letter-spacing: -0.02em; margin-bottom: 16px; color: #1C1B18;">MindPulse</div>
+        <div style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: #706E65; letter-spacing: 0.04em; text-transform: uppercase;">
+          <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #1F4E42; animation: mpPulse 1.4s ease-in-out infinite;"></span>
+          Loading experience...
+        </div>
+        <style>
+          @keyframes mpPulse {
+            0%, 100% { opacity: 0.3; transform: scale(0.85); }
+            50% { opacity: 1; transform: scale(1.15); }
+          }
+        </style>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

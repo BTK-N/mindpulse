@@ -1,0 +1,26 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Node & Frontend
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.tmp/
+.pnpm-debug.log*
+
+# Environment keys
+.env
+*.local
+k.env
+
+# Databases
+users.db
+*.db
+*.sqlite

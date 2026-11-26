@@ -1,0 +1,72 @@
+MINDPULSE SCREEN TIME COMPANION — EXTENSION INSTALLATION INSTRUCTIONS
+====================================================================
+
+Extension Directory: browser-extension/
+Manifest Version:    3 (v0.1.0)
+Supported Browsers:  Google Chrome, Microsoft Edge, Brave, Opera (Chromium 109+)
+
+
+1. INSTALL THE EXTENSION (LOAD UNPACKED)
+----------------------------------------
+1. Clone or download this repository to your machine and locate the
+   `browser-extension` folder inside the project root.
+
+2. Open your Chromium browser and navigate to the extensions page:
+   - Google Chrome: chrome://extensions/
+   - Microsoft Edge: edge://extensions/
+   - Brave:          brave://extensions/
+   - Opera:          opera://extensions/
+
+3. Enable "Developer mode" using the toggle switch
+   (top-right corner on Chrome/Brave/Opera; left sidebar on Edge).
+
+4. Click the "Load unpacked" button.
+
+5. Select the `browser-extension` folder (NOT the root `social-media` folder).
+   Confirm "MindPulse Screen Time Companion" appears with zero errors.
+
+6. Click the Extensions (puzzle piece) icon in the browser toolbar and pin
+   "MindPulse Screen Time Companion" for quick access.
+
+
+2. START THE MINDPULSE WEB APP & BACKEND
+----------------------------------------
+Before pairing the extension, start both servers locally:
+
+- Backend API: python -m uvicorn api:app --host 127.0.0.1 --port 8000
+- Frontend UI: cd frontend && pnpm run dev --host 0.0.0.0 --port 5173
+  (Or double-click `run_fullstack.bat` on Windows.)
+
+
+3. PAIR THE EXTENSION WITH YOUR ACCOUNT (OPTIONAL SYNC)
+-------------------------------------------------------
+The extension tracks active tab hostnames locally in `chrome.storage.local`
+even without pairing. To view screen-time trends inside the MindPulse web app:
+
+1. Open http://localhost:5173 and sign in (or click "Use demo account").
+2. On the Assessment tab, scroll to the "Screen Time Companion" card and
+   click "Connect companion extension" to generate a pairing token.
+3. Click the MindPulse extension icon in your browser toolbar.
+4. Paste the pairing token and connect.
+5. Once connected, domain-level aggregates sync every 5 minutes automatically
+   (or immediately when you click "Sync now" in the popup).
+
+
+4. VERIFY IT IS WORKING
+-----------------------
+1. Browse any public website (e.g., https://wikipedia.org or https://youtube.com)
+   with the browser window focused for ~30-60 seconds.
+2. Open the MindPulse extension popup and verify today's active hostname
+   and accumulated time appear.
+3. Toggle tracking OFF/ON in the popup to pause/resume local collection anytime.
+4. In the web app's "Report -> Screen time" tab, verify synced usage data appears
+   after pairing and syncing.
+
+
+5. PRIVACY SUMMARY
+------------------
+- Tracks active-tab hostnames only (never full URL paths, page content, or
+  search queries), and filters out localhost / private IPs.
+- Pauses automatically when the browser loses focus or after 60s of OS idle time.
+- Stores up to 30 days locally in `chrome.storage.local`.
+- Unpair or revoke access anytime from the MindPulse web app ("Revoke").

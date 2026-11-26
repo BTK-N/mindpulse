@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindPulse Screen Time</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Section 1: Tracking -->
+    <section class="tracking-section">
+      <!-- Header Row -->
+      <header class="header-row">
+        <h1 class="extension-title">MindPulse Screen Time</h1>
+        <label class="toggle-switch" title="Pause or resume tracking">
+          <input type="checkbox" id="toggle-enabled" checked />
+          <span class="slider" aria-hidden="true"></span>
+        </label>
+      </header>
+
+      <!-- Today's Total Summary -->
+      <div class="summary-section">
+        <div class="total-time" id="total-time">0s today</div>
+        <div class="site-count" id="site-count">on 0 sites</div>
+      </div>
+
+      <!-- Top 5 Domains List -->
+      <div class="domains-section">
+        <ul class="domain-list" id="domain-list"></ul>
+        <div class="empty-state" id="empty-state" style="display: none;">
+          No activity yet. Browse for a minute and reopen this popup.
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Divider -->
+    <hr class="section-divider" />
+
+    <!-- Section 3: Sync Status -->
+    <section class="sync-section" id="sync-section">
+      <div class="section-mono-header">SYNC</div>
+
+      <!-- Unpaired State -->
+      <div id="sync-unpaired" class="sync-panel" style="display: none;">
+        <button type="button" id="btn-show-pair" class="btn-pair-outline">Pair with MindPulse</button>
+        <div id="pair-form" class="pair-form" style="display: none;">
+          <div class="pair-input-group">
+            <input type="text" id="input-token" class="token-input" placeholder="Paste pairing token" spellcheck="false" autocomplete="off" />
+            <button type="button" id="btn-connect" class="btn-connect">Connect</button>
+          </div>
+          <div id="pair-feedback" class="pair-feedback" style="display: none;"></div>
+          <a href="#" id="link-get-token" class="get-token-link">Get a token from MindPulse &rarr; Assessment page</a>
+        </div>
+      </div>
+
+      <!-- Paired State -->
+      <div id="sync-paired" class="sync-panel" style="display: none;">
+        <div class="sync-status-row">
+          <span class="sync-status-badge" id="sync-status-badge">Synced just now &check;</span>
+          <a href="#" id="link-sync-now" class="sync-now-link">Sync now</a>
+        </div>
+        <div class="sync-meta-row">
+          <span class="sync-meta-time" id="sync-meta-time">Last sync: Never</span>
+          <a href="#" id="link-disconnect" class="disconnect-link">Disconnect</a>
+        </div>
+        <div id="sync-repair-prompt" class="sync-repair-box" style="display: none;">
+          <div class="repair-msg">Token expired &mdash; re-pair needed</div>
+          <a href="#" id="link-get-new-token" class="get-token-link">Get new token &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Divider -->
+    <hr class="section-divider" />
+
+    <!-- Section 5: Notifications -->
+    <section class="notifications-section" id="notifications-section">
+      <div class="section-mono-header">NOTIFICATIONS</div>
+      
+      <!-- Row A: Site time alert -->
+      <div class="notif-row">
+        <div class="notif-text">
+          <label for="toggle-notif-site" class="notif-label">Site time alert</label>
+          <div class="notif-sublabel">Alert when you spend too long on one site.</div>
+        </div>
+        <label class="toggle-switch" title="Toggle site time alert">
+          <input type="checkbox" id="toggle-notif-site" checked />
+          <span class="slider" aria-hidden="true"></span>
+        </label>
+      </div>
+      <div class="notif-subrow" id="site-threshold-subrow">
+        <label for="select-site-threshold" class="subrow-label">Threshold</label>
+        <select id="select-site-threshold" class="notif-select">
+          <option value="30">30 minutes</option>
+          <option value="45" selected>45 minutes</option>
+          <option value="60">60 minutes</option>
+          <option value="90">90 minutes</option>
+        </select>
+      </div>
+
+      <!-- Row B: Daily total alert -->
+      <div class="notif-row">
+        <div class="notif-text">
+          <label for="toggle-notif-daily" class="notif-label">Daily total alert</label>
+          <div class="notif-sublabel">Alert when your daily screen time gets high.</div>
+        </div>
+        <label class="toggle-switch" title="Toggle daily total alert">
+          <input type="checkbox" id="toggle-notif-daily" checked />
+          <span class="slider" aria-hidden="true"></span>
+        </label>
+      </div>
+      <div class="notif-subrow" id="daily-threshold-subrow">
+        <label for="select-daily-threshold" class="subrow-label">Threshold</label>
+        <select id="select-daily-threshold" class="notif-select">
+          <option value="120">2 hours</option>
+          <option value="180" selected>3 hours</option>
+          <option value="240">4 hours</option>
+          <option value="300">5 hours</option>
+        </select>
+      </div>
+
+      <!-- Row C: Repeat open alert -->
+      <div class="notif-row">
+        <div class="notif-text">
+          <label for="toggle-notif-behavioral" class="notif-label">Repeat open alert</label>
+          <div class="notif-sublabel">Alert when you reopen the same site 10+ times in an hour.</div>
+        </div>
+        <label class="toggle-switch" title="Toggle repeat open alert">
+          <input type="checkbox" id="toggle-notif-behavioral" />
+          <span class="slider" aria-hidden="true"></span>
+        </label>
+      </div>
+
+      <!-- Row D: Quiet hours -->
+      <div class="notif-row">
+        <div class="notif-text">
+          <label for="toggle-notif-quiet" class="notif-label">Quiet hours</label>
+          <div class="notif-sublabel">Pause alerts during rest hours.</div>
+        </div>
+        <label class="toggle-switch" title="Toggle quiet hours">
+          <input type="checkbox" id="toggle-notif-quiet" checked />
+          <span class="slider" aria-hidden="true"></span>
+        </label>
+      </div>
+      <div class="notif-subrow notif-time-row" id="quiet-hours-subrow">
+        <label class="subrow-label">Hours</label>
+        <div class="time-inputs-group">
+          <input type="time" id="input-quiet-start" class="notif-time-input" value="22:00" />
+          <span class="time-separator">to</span>
+          <input type="time" id="input-quiet-end" class="notif-time-input" value="08:00" />
+        </div>
+      </div>
+
+      <!-- Test notification trigger -->
+      <div class="notif-test-row">
+        <a href="#" id="link-test-notification" class="test-notification-link">Test notification</a>
+        <span id="test-notif-feedback" class="test-feedback" style="display: none;">Sent</span>
+      </div>
+    </section>
+
+    <!-- Section 6: Footer -->
+    <div class="app-link-row">
+      <a href="#" id="open-app-link" class="open-link">Open MindPulse &rarr;</a>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
